@@ -1,29 +1,29 @@
 const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
 
-const getAllProgram = async (req, res) => {
+const getAllTvshows = async (req, res) => {
     try {
-        //#swagger.tags=['Program']
-        const result = await mongodb.getDatabase().db().collection('programs').find();
-        const programs = await result.toArray();
+        //#swagger.tags=['Tvshows']
+        const result = await mongodb.getDatabase().db().collection('tvshows').find();
+        const tvshows = await result.toArray();
         res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(programs);
+        res.status(200).json(tvshows);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
 
-const getSingle = async (req, res) => {
+const getSingleTvshows = async (req, res) => {
     try {
-        //#swagger.tags=['Program']
-        const programsId = new ObjectId(req.params.id);
-        const result = await mongodb.getDatabase().db().collection('programs').find({ _id: programsId });
-        const programs = await result.toArray();
-        if (programs.length === 0) {
-            res.status(404).json({ error: 'programs not found' });
+        //#swagger.tags=['Tvshows']
+        const tvshowsId = new ObjectId(req.params.id);
+        const result = await mongodb.getDatabase().db().collection('tvshows').find({ _id: tvshowsId });
+        const tvshows = await result.toArray();
+        if (tvshows.length === 0) {
+            res.status(404).json({ error: 'tvshows not found' });
         } else {
             res.setHeader('Content-Type', 'application/json');
-            res.status(200).json(programs[0]);
+            res.status(200).json(tvshows[0]);
         }
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -31,10 +31,10 @@ const getSingle = async (req, res) => {
 };
 
 
-const postProgram = async (req, res) => {
+const postTvshows = async (req, res) => {
     try {
-        //#swagger.tags=['Program']
-        const program = {
+        //#swagger.tags=['Tvshows']
+        const tvshow = {
             TITLE: req.body.title,
             GENRE: req.body.genre,
             SEASONS: req.body.seasons,
@@ -42,22 +42,22 @@ const postProgram = async (req, res) => {
             CAST: req.body.cast,
             RATING: req.body.rating
         };
-        const response = await mongodb.getDatabase().db().collection('programs').insertOne(program);
+        const response = await mongodb.getDatabase().db().collection('tvshows').insertOne(tvshow);
         if (response.acknowledged) {
             res.status(201).send(response);
         } else {
-            res.status(500).json({ error: 'Some error occurred while creating the program entry.' });
+            res.status(500).json({ error: 'Some error occurred while creating the tvshows entry.' });
         }
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
 
-const putProgram = async (req, res) => {
+const putTvshows = async (req, res) => {
     try {
-        //#swagger.tags=['Program']
-        const programId = new ObjectId(req.params.id);
-        const program = {
+        //#swagger.tags=['Tvshows']
+        const tvshowId = new ObjectId(req.params.id);
+        const tvshow = {
             TITLE: req.body.title,
             GENRE: req.body.genre,
             SEASONS: req.body.seasons,
@@ -65,7 +65,7 @@ const putProgram = async (req, res) => {
             CAST: req.body.cast,
             RATING: req.body.rating
         };
-        const response = await mongodb.getDatabase().db().collection('programs').replaceOne({ _id: programId }, program);
+        const response = await mongodb.getDatabase().db().collection('tvshows').replaceOne({ _id: tvshowId }, tvshow);
         if (response.modifiedCount > 0) {
             res.status(204).send(response);
         } else {
@@ -76,11 +76,11 @@ const putProgram = async (req, res) => {
     }
 };
 
-const deleteProgram = async (req, res) => {
+const deleteTvshows = async (req, res) => {
     try {
-        //#swagger.tags=['Program']
-        const programId = new ObjectId(req.params.id);
-        const response = await mongodb.getDatabase().db().collection('programs').deleteOne({ _id: programId });
+        //#swagger.tags=['Tvshows']
+        const tvshowId = new ObjectId(req.params.id);
+        const response = await mongodb.getDatabase().db().collection('tvshows').deleteOne({ _id: tvshowId });
         if (response.deletedCount > 0) {
             res.status(200).send(response);
         } else {
@@ -92,9 +92,9 @@ const deleteProgram = async (req, res) => {
 };
 
 module.exports = {
-    getAllProgram,
-    getSingle,
-    postProgram,
-    putProgram,
-    deleteProgram,
+    getAllTvshows,
+    getSingleTvshows,
+    postTvshows,
+    putTvshows,
+    deleteTvshows,
 };

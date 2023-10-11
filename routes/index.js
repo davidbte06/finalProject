@@ -6,7 +6,10 @@ router.get('/', (req, res) => {
     res.send('tvshows  programs');
 });
 
+router.use('/tvshows', require('./tvshows'));
 
 router.use('/reviews', require('./reviews'));
+
+
 
 module.exports = router;
