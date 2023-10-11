@@ -5,7 +5,7 @@ const doc = {
     title: 'WatchRadar Api',
     description: 'WatchRadar Api',
   },
-  host: 'localhost:3000',
+  host: 'localhost:3005',
   schemes: ['https', 'http'],
 };
 
