@@ -16,6 +16,7 @@
   "bugs": {
     "url": "https://github.com/davidbte06/finalProject/issues"
   },
+<<<<<<< HEAD
   "homepage": "https://github.com/davidbte06/finalProject#readme",
   "dependencies": {
     "body-parser": "^1.20.2",
@@ -27,4 +28,7 @@
     "swagger-autogen": "^2.23.6",
     "swagger-ui-express": "^5.0.0"
   }
+=======
+  "homepage": "https://github.com/davidbte06/finalProject#readme"
+>>>>>>> parent of da61c72 (adding reviews collection)
 }
