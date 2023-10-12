@@ -4,7 +4,7 @@ const dotenv = require('dotenv').config();
 const mongodb = require('./data/database');
 const cors = require('cors');
 
-const port = process.env.PORT || 3005;
+const port = process.env.PORT || 3000;
 const app = express();
 
 app.use(bodyParser.json());
