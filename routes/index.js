@@ -3,6 +3,8 @@ router.use('/', require('./swagger'));
 
 // PASTE RIGHT HERE YOUR ROUTES
 
-router.use('/reviews', require('./reviews'));
+router.use('/movies', require('./movies'));
+
+//router.use('/reviews', require('./reviews'));
 
 module.exports = router;
